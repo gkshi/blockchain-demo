@@ -1,12 +1,13 @@
 import transitionPath from 'router5-transition-path'
 import { State } from 'router5/dist/types/base'
 import { Router } from 'router5/dist/types/router'
+import { getEthereumAccounts } from '../../store/auth/events'
 
 import routes from '../routes'
 
-// async function _checkAuth () {
-//   //
-// }
+const checkEthereumAccounts = async () => {
+  await getEthereumAccounts().catch(() => {})
+}
 
 export const session = (router: Router) => (toState: State, fromState: State) => {
   const { toActivate } = transitionPath(toState, fromState)
@@ -19,7 +20,7 @@ export const session = (router: Router) => (toState: State, fromState: State) =>
     .all(onActivateHandlers.map(callback => callback()))
     // actions before app mounting
     .then(async data => {
-      // await _checkAuth()
+      await checkEthereumAccounts()
       return data
     })
     .then(data => {

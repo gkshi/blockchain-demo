@@ -3,11 +3,11 @@ import routes from '../routes'
 import { State } from 'router5/dist/types/base'
 
 function showOnlyForGuests (): boolean {
-  return !$auth.getState().user
+  return !$auth.getState().accounts.length
 }
 
 function showOnlyForAuthed (): boolean {
-  return !!$auth.getState().user
+  return !!$auth.getState().accounts.length
 }
 
 const canActivate = (routeName: string): boolean => {
@@ -27,7 +27,7 @@ const canActivate = (routeName: string): boolean => {
 export const accessor = (router: any) => (toState: State, fromState: State, done: any) => {
   if (!canActivate(toState.name)) {
     // redirecting from unavailable pages to default
-    return router.navigate($auth.getState().user ? 'home' : 'auth')
+    return router.navigate($auth.getState().accounts.length ? 'home' : 'auth')
   }
   done()
 }

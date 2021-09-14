@@ -1,44 +1,26 @@
 import { AuthState } from './types'
 import { AuthDomain } from './domain'
 
-import {
-  register,
-  login,
-  logout,
-  checkAuth
-} from './events'
+import { getEthereumAccounts, setEthereumAccounts } from './events'
 
 const initialState: AuthState = {
-  user: null
+  accounts: []
 }
 
 export const $auth = AuthDomain.store<AuthState>(initialState)
-  .on(register.done, (state, { result }) => {
+  .on(setEthereumAccounts, (state, value) => {
     state = {
       ...state,
-      user: result
+      accounts: value
     }
     return state
   })
-  .on(login.done, (state, { result }) => {
+  .on(getEthereumAccounts.done, (state, { result }) => {
     state = {
       ...state,
-      user: result.user
+      accounts: result
     }
-    return state
-  })
-  .on(logout.done, (state) => {
-    state = {
-      ...state,
-      user: null
-    }
-    return state
-  })
-  .on(checkAuth.done, (state, { result }) => {
-    state = {
-      ...state,
-      user: result.user
-    }
+    setEthereumAccounts(result)
     return state
   })
 
