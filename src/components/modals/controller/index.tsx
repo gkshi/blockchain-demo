@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { $modals } from '../../../store/modals/store'
 
-import SampleModal from '../sample'
+import SendTransactionModal from '../send-transaction'
 
 import './_index.scss'
 
@@ -19,7 +19,7 @@ function ModalController () {
 
   return (
     <div className={`component -modal-controller ${show ? '-active' : ''}`}>
-      <SampleModal />
+      <SendTransactionModal />
     </div>
   )
 }

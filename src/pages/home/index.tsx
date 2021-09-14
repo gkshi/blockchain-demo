@@ -13,8 +13,8 @@ function HomePage () {
     return window.ethereum.isMetaMask.toString()
   }
 
-  const openSampleModal = () => {
-    openModal('sample')
+  const openSendTransactionModal = () => {
+    openModal('send_transaction')
   }
 
   const isEthereum = () => !!window.ethereum
@@ -40,7 +40,7 @@ function HomePage () {
 
       <section>
         <div>
-          <a href="#" onClick={openSampleModal}>open sample modal</a>
+          <UIButton onClick={openSendTransactionModal}>send transaction</UIButton>
         </div>
       </section>
     </div>

@@ -51,6 +51,17 @@
       }
     }
 
+    &-light {
+      & > * {
+        background: $color-gray;
+        color: $color-text-regular;
+
+        &:hover {
+          background: darken($color-gray, 4%);
+        }
+      }
+    }
+
     &-danger {
       & > * {
         background: $color-danger;

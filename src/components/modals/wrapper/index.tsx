@@ -90,7 +90,7 @@ function ModalWrapper (props: ModalWrapperProps) {
             <CrossIcon />
           </div>}
           {props.heading && <div className="head">
-            <div className="h2 flex center">{props.heading}</div>
+            <div className="h2">{props.heading}</div>
           </div>}
           <div className="body">{props.children}</div>
         </dialog>
